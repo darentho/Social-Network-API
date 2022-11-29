@@ -1,18 +1,27 @@
 const router = require("express").Router();
 
-const thoughtController = {
-  getAllThoughts({}, res) {
-    Thought.find()
-      .populate({
-        path: "reactions",
-        select: "-__v",
-      })
-      .select("-__v")
-      .sort({ _id: -1 })
-      .then((dbThoughtData) => res.json(dbThoughtData))
-      .catch((err) => {
-        console.log(err);
-        res.status(400).json(err);
-      });
-  },
-};
+const {
+  getAllThoughts,
+  getThoughtById,
+  addThought,
+  updateThought,
+  removeThought,
+  addReaction,
+  deleteReaction,
+  removeReaction,
+} = require("../../controllers/thought-controller");
+
+router.route("/").get(getAllThoughts).post(addThought);
+
+router
+  .route("/:id")
+  .get(getThoughtById)
+  .put(updateThought)
+  .delete(removeThought)
+  .findOneAndUpdate(removeReaction);
+
+router.route("/:thoughtId/reactions").post(addReaction);
+
+router.route("/:thoughtId/reactions/:reactionId").delete(deleteReaction);
+
+module.exports = router;
