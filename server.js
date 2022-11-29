@@ -12,6 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(require("./routes"));
 
 //establishing mongo connection
+//I had to change localhost to 0.0.0.0 to get it to work.
 mongoose.connect(process.env.MONGODB_URI || "mongodb://0.0.0.0:27017/", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
