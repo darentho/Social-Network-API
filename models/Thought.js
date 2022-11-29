@@ -1,14 +1,10 @@
-const { Schmema, Model, Types } = require("mongoose");
+const { Schema, model, Types } = require("mongoose");
 const moment = require("moment");
-
-const { Schmema, Model, Types } = require("mongoose");
-const moment = require("moment");
-const { stringify } = require("querystring");
 
 const ReactionSchema = new Schema(
   {
     reactionId: {
-      type: Schema.types.ObjectId,
+      type: Schema.Types.ObjectId,
       default: () => new Types.ObjectId(),
     },
     reactionBody: {
@@ -39,7 +35,7 @@ const ReactionSchema = new Schema(
 const ThoughtSchema = new Schema(
   {
     thoughtText: {
-      type: stringify,
+      type: String,
       required: true,
       minlength: 1,
       maxlength: 250,
