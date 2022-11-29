@@ -12,7 +12,7 @@ const {
 } = require("../../controllers/thought-controller");
 
 router.route("/").get(getAllThoughts).post(addThought);
-
+//Our routes for getting, putting or deleting by id.
 router
   .route("/:id")
   .get(getThoughtById)
